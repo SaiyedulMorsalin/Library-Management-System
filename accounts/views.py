@@ -9,6 +9,7 @@ class TransactionCreateMixin(LoginRequiredMixin, CreateView):
     model = Transaction
     template_name = ""
     success_url = ""
+    pass
 
 
 class DepositMoney(TransactionCreateMixin):
