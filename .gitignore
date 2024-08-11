@@ -14,3 +14,6 @@ __pycache__/
 *.pyo
 *.pyd
 *.pyo
+
+.env
+.\library_management_system\.env
