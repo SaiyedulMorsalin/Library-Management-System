@@ -10,10 +10,13 @@
 
 {% block main_content %}
   <div class="container mx-auto mt-3">
-    <div class="flex justify-between px-2 items-center">
-      <h1 class="text-xl font-bold">Books</h1>
-      <button class="btn btn-sm btn-outline text-lgs" onclick="window.location.href = '{% url 'book_detail' %}'">See all</button>
+    <div class="header-text">
+      <div class="flex justify-between items-center my-3">
+        <h1 class="font-bold text-xl">Most Popular Books Weekly</h1>
+        <button class="btn btn-outline"><a href="">See All</a></button>
+      </div>
     </div>
+
     <div class="">
       <div class="grid grid-cols-2 md:grid-cols-12 sm:gap-5 gap-2 my-5">
         <div class="col-span-1 sm:col-span-3 lg:col-span-2 hover:drop-shadow-lg" id="card-wrap">
@@ -35,54 +38,39 @@
               </div>
             </div>
           </div>
-          <div id="card" class="card card-compact bg-base-100 shadow-xl">
-            <figure onclick="window.location.href = '{% url 'book_detail' %}'">
-              <img id="img" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Book" />
-            </figure>
-            <div class="card-body">
-              <h2 class="text-2xl leading-none">Harry Potter</h2>
-              <p class="leading-none ml-2 text-lg italic">by author</p>
-              <div class="card-text text-center">
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <h3 title="Now Borrow Price Tk. 450" class=""><span class="line-through italic text-lg">TK. 500</span><span class="ml-1 hover:italic text-xl font-semibold">Tk. 450</span></h3>
-              </div>
-
-              <div id="card-actions" class="card-actions justify-end">
-                <button onclick="my_modal_4.showModal()" class="btn btn-sm btn-outline hidden sm:block">Read</button>
-                <button onclick="window.location.href = '{% url 'book_detail' %}'" class="btn btn-sm btn-primary hidden sm:block">Details</button>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="col-span-1 sm:col-span-3 lg:col-span-2">
-          <div id="card" class="card card-compact bg-base-100 shadow-xl">
-            <figure onclick="window.location.href = '{% url 'book_detail' %}'">
-              <img id="img" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Book" />
-            </figure>
-            <div class="card-body">
-              <h2 class="text-2xl leading-none">Harry Potter</h2>
-              <p class="leading-none ml-2 text-lg italic">by author</p>
-              <div class="card-text text-center">
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <h3 title="Now Borrow Price Tk. 450" class=""><span class="line-through italic text-lg">TK. 500</span><span class="ml-1 hover:italic text-xl font-semibold">Tk. 450</span></h3>
-              </div>
+          <div class="col-span-1 sm:col-span-3 lg:col-span-2">
+            <div id="card" class="card card-compact bg-base-100 shadow-xl">
+              <figure onclick="window.location.href = '{% url 'book_detail' %}'">
+                <img id="img" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Book" />
+              </figure>
+              <div class="card-body">
+                <h2 class="text-2xl leading-none">Harry Potter</h2>
+                <p class="leading-none ml-2 text-lg italic">by author</p>
+                <div class="card-text text-center">
+                  <p>If a dog chews shoes whose shoes does he choose?</p>
+                  <h3 title="Now Borrow Price Tk. 450" class=""><span class="line-through italic text-lg">TK. 500</span><span class="ml-1 hover:italic text-xl font-semibold">Tk. 450</span></h3>
+                </div>
 
-              <div id="card-actions" class="card-actions justify-end">
-                <button onclick="my_modal_4.showModal()" class="btn btn-sm btn-outline hidden sm:block">Read</button>
-                <button onclick="window.location.href = '{% url 'book_detail' %}'" class="btn btn-sm btn-primary hidden sm:block">Details</button>
+                <div id="card-actions" class="card-actions justify-end">
+                  <button onclick="my_modal_4.showModal()" class="btn btn-sm btn-outline hidden sm:block">Read</button>
+                  <button onclick="window.location.href = '{% url 'book_detail' %}'" class="btn btn-sm btn-primary hidden sm:block">Details</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-span-1 sm:col-span-3 lg:col-span-2"></div>
         <div class="col-span-1 sm:col-span-3 lg:col-span-2"></div>
         <div class="col-span-1 sm:col-span-3 lg:col-span-2"></div>
         <div class="col-span-1 sm:col-span-3 lg:col-span-2"></div>
       </div>
     </div>
+    {% include 'weekly_authors.html' %}
   </div>
 
+  {% comment %}modal{% endcomment %}
   <dialog id="my_modal_4" class="modal">
     <div class="modal-box w-11/12 max-w-5xl">
       <h3 class="text-lg font-bold">Harry Potter</h3>
