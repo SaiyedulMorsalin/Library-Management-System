@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,6 +12,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'src/script.js' %}"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -22,12 +24,17 @@
         }
       }
     </script>
+    <style>
+      #img:hover {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <header>
-      {% block header %}
-        {% include 'navbar.html' %}
-        {% include 'header.html' %}
+      {% include 'navbar.html' %}
+      {% block hero %}
+
       {% endblock %}
     </header>
     <main>

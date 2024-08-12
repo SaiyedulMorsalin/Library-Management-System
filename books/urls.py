@@ -1,3 +1,4 @@
 from django.urls import path
+from .views import BookDetail
 
-urlpatterns = []
+urlpatterns = [path("details/", BookDetail.as_view(), name="book_detail")]
