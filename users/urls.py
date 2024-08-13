@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserProfileView, UserLoginView, UserLogoutView
+from .views import UserProfileView, UserLoginView, UserLogoutView, UserRegisterView
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -12,7 +12,7 @@ urlpatterns = [
         TemplateView.as_view(template_name="logout_conf.html"),
         name="logout_conf",
     ),
-    # path("register", RegisterView, name="user_register"),
+    path("register/", UserRegisterView.as_view(), name="user_register"),
     # path("user/profile/edit", UserEditProfile, name="user_edit_profile"),
     # path("user/account/deposit/", user_deposit, name="user_account_deposit"),
     # path("user/borrowing/history/", borrow_history, name="user_borrow_history"),
