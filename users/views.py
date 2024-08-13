@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import TemplateView, UpdateView, FormView
+from django.contrib import messages
 
 
 # Create your views here.
@@ -27,10 +28,10 @@ class UserLoginView(LoginView):
 
 
 class UserLogoutView(LogoutView):
-    def get_success_ulr(self):
-        if self.request.user.is_authenticated:
-            logout(self.request)
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
+    def get_success_url(self):
         return reverse_lazy("home_page")
 
 
