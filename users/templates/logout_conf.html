@@ -7,7 +7,7 @@
         <form method="post" action="{% url 'user_logout' %}">
           <h2>Are you sure</h2>
           {% csrf_token %}
-          <button class="btn btn-ouline" type="submit">Logout</button>
+          <button class="btn btn-outline btn-primary" type="submit">Logout</button>
         </form>
         {% comment %} <button class="btn btn-outline btn-accent">Confirm</button> {% endcomment %}
       </div>

@@ -1,18 +1,17 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import TemplateView, UpdateView, FormView
 from django.contrib import messages
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserLoginForm
 
 
 # Create your views here.
 class UserRegisterView(FormView):
     template_name = "register.html"
     form_class = UserRegisterForm
-    success_url = reverse_lazy("register")
+    success_url = reverse_lazy("user_register")
 
     def form_valid(self, form):
         user = form.save()
@@ -22,7 +21,7 @@ class UserRegisterView(FormView):
 
 class UserLoginView(LoginView):
     template_name = "login.html"
-    form_class = AuthenticationForm
+    form_class = UserLoginForm
 
     def get_success_url(self):
         return reverse_lazy("home_page")

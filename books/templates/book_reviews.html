@@ -2,9 +2,9 @@
   <div class="my-3 flex justify-between">
     <h2 class="text-3xl font-bold">Reviews(0)</h2>
     {% if request.user.is_authenticated %}
-      <button class="btn btn-outline" onclick="my_modal_2.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Write a Review</button>
+      <button class="btn btn-xs sm:btn-md btn-outline" onclick="my_modal_2.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Write a Review</button>
     {% else %}
-      <button class="btn btn-outline" onclick="my_modal_3.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Write a Review</button>
+      <button class="btn btn-xs sm:btn-md btn-outline" onclick="my_modal_3.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Write a Review</button>
     {% endif %}
   </div>
 
@@ -72,7 +72,7 @@
     <form action="" class="my-3">
       <textarea placeholder="Bio" class="textarea textarea-bordered textarea-lg w-full"></textarea>
       <div class="flex justify-end">
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-xs sm:btn-md btn-primary" type="submit">Submit</button>
       </div>
     </form>
   </div>
