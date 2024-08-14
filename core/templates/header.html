@@ -9,7 +9,7 @@
         {% if categories %}
           {% for cat in categories %}
             <div class="form-control">
-              <label class="flex cursor-pointer gap-2" onclick="window.location.href = '{% url 'book_detail' %}'">
+              <label class="flex cursor-pointer gap-2" onclick="window.location.href = ''">
                 <input type="radio" name="radio-9" class="radio" />
                 <a onclick="document.getElementById('{{ cat.slug }}').checked = true; return false;">{{ cat.name }}</a>
               </label>

@@ -1,6 +1,7 @@
 from django.db import models
 from authors.models import Author
 from categories.models import Category
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -20,3 +21,11 @@ class Book(models.Model):
 
     def now_price(self):
         return self.borrow_price - self.discount_price
+
+
+class AddComment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)

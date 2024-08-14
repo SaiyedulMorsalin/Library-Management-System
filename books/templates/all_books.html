@@ -14,7 +14,7 @@
           {% for book in all_books %}
             <div class="col-span-1 sm:col-span-3 lg:col-span-2 hover:drop-shadow-lg" id="card-wrap">
               <div id="card" class="card card-compact bg-base-100 shadow-xl">
-                <figure onclick="window.location.href = '{% url 'book_detail' %}'">
+                <figure onclick="window.location.href = '{% url 'book_detail' book.id %}'">
                   <img id="img" src="{{ book.book_image.url }}" alt="Book" />
                 </figure>
                 <div class="card-body">

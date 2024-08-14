@@ -1,61 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block title %}
+  Register
+{% endblock %}
 {% block main_content %}
-  <div class="container mx-auto">
-    <form method="post" class="space-y-10">
-      {% csrf_token %}
-
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.book_image.id_for_label }}">{{ form.book_image.label }}</label>
-        {{ form.book_image }}
-      </div>
-
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
-        {{ form.title }}
-      </div>
-
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.author.id_for_label }}">{{ form.author.label }}</label>
-        {{ form.author }}
-      </div>
-
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.categories.id_for_label }}">{{ form.categories.label }}</label>
-        {{ form.categories }}
-      </div>
-
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.book_content.id_for_label }}">{{ form.book_content.label }}</label>
-        {{ form.book_content }}
-      </div>
-
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
-        {{ form.description }}
-      </div>
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.isbn_number.id_for_label }}">{{ form.isbn_number.label }}</label>
-        {{ form.isbn_number }}
-      </div>
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.borrow_price.id_for_label }}">{{ form.borrow_price.label }}</label>
-        {{ form.borrow_price }}
-      </div>
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.stk_quantity.id_for_label }}">{{ form.stk_quantity.label }}</label>
-        {{ form.stk_quantity }}
-      </div>
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.is_available.id_for_label }}">{{ form.is_available.label }}</label>
-        {{ form.is_available }}
-      </div>
-      <div class="">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ form.discount_price.id_for_label }}">{{ form.discount_price.label }}</label>
-        {{ form.discount_price }}
-      </div>
-
-      <button class="bg-blue-500 text-white py-2 px-4 rounded" type="submit">Add Book</button>
-    </form>
-  </div>
+  <h4 class="text-center">Please Add Car</h4>
+  <form method="post" class="w-25 mx-auto">
+    {% csrf_token %}
+    {{ form }}
+    <input class="btn btn-outline-primary" type="submit" value="Add Car" />
+  </form>
+  <p class="text-center text-danger">
+    Note***
+    <small>This Page only access for superuser or site admin</small>***
+  </p>
 {% endblock %}

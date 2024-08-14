@@ -27,6 +27,7 @@ urlpatterns = [
     path("books/", include("books.urls")),
     path("", include("core.urls")),
     path("users/", include("users.urls")),
+    path("user/borrow/", include("user_borrow_book.urls")),
     # other url patterns
 ]
 

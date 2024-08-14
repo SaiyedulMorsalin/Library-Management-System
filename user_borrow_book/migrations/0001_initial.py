@@ -10,19 +10,20 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('books', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ReaderUserAddress',
+            name='BorrowBook',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('street_address', models.CharField(max_length=100)),
-                ('city', models.CharField(max_length=100)),
-                ('postal_code', models.IntegerField()),
-                ('country', models.CharField(max_length=100)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='address', to=settings.AUTH_USER_MODEL)),
+                ('quantity', models.PositiveIntegerField()),
+                ('total_price', models.DecimalField(decimal_places=2, max_digits=10)),
+                ('borrow_at', models.DateTimeField(auto_now_add=True)),
+                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='books.book')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

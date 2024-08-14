@@ -16,6 +16,7 @@ class UserRegisterView(FormView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
+        messages.success(self.request, "You Are Successfully Registered!!")
         return super().form_valid(form)
 
 
@@ -24,6 +25,7 @@ class UserLoginView(LoginView):
     form_class = UserLoginForm
 
     def get_success_url(self):
+        messages.success(self.request, "You Are Successfully Login!!")
         return reverse_lazy("home_page")
 
 
@@ -32,6 +34,7 @@ class UserLogoutView(LogoutView):
         return super().get(request, *args, **kwargs)
 
     def get_success_url(self):
+        messages.success(self.request, "You have been successfully logged out!")
         return reverse_lazy("home_page")
 
 
