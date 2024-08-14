@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # "users/profile/logout",
-    path("user/profile/", UserProfileView.as_view(), name="user_profile"),
+    path("<str:name>/profile/", UserProfileView.as_view(), name="user_profile"),
     path("login/", UserLoginView.as_view(), name="user_login"),
     path("logout/", UserLogoutView.as_view(), name="user_logout"),
     path(

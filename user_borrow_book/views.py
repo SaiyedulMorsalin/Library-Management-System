@@ -17,7 +17,7 @@ try:
                 "borrow_conf", order_id=borrow.id
             )  # use correct URL name and parameter
         else:
-            return redirect("book_detail", book_id=book.id)  # corrected parameter name
+            return redirect("book_detail", book_id=book.id)
 
     def borrow_confirmation(request, order_id):
         borrow = get_object_or_404(

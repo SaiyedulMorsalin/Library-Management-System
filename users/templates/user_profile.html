@@ -3,5 +3,37 @@
 {% block main_content %}
   <div class="sm:container sm:mx-auto">
     <h2 class="text-3xl text-red-600 font-bold text-center">This is User Profile</h2>
+
+    <div class="overflow-x-auto">
+      <table class="table table-xs">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Job</th>
+            <th>company</th>
+            <th>location</th>
+            <th>Last Login</th>
+            <th>Favorite Color</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for borrow in all_borrow %}
+            <tr>
+              <th>{{ borrow.id }}</th>
+              <td>{{ borrow.book.title }}</td>
+              <td>{{ borrow.book.author }}</td>
+              <td>{{ borrow.borrow_at }}</td>
+              <td>{{ borrow.book.discount_price }}</td>
+              <td>{{ borrow.user.account.balance }}</td>
+              <td>
+                <a class="btn btn-xs sm:btn-sm btn-outline btn-primary" href="">Return Borrow</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
+  {{ user_account }}
 {% endblock %}

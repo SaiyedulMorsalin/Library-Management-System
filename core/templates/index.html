@@ -23,7 +23,7 @@
           {% for book in books %}
             <div class="col-span-1 sm:col-span-3 lg:col-span-2 hover:drop-shadow-lg" id="card-wrap">
               <div id="card" class="card card-compact bg-base-100 shadow-xl">
-                <figure onclick="window.location.href = '{% url 'book_detail' book.id %}'">
+                <figure onclick="window.location.href = '{% url 'book_detail' book.title book.id %}'">
                   <img id="img" src="{{ book.book_image.url }}" alt="Book" />
                 </figure>
                 <div class="card-body">
@@ -38,7 +38,7 @@
 
                   <div id="card-actions" class="card-actions justify-end">
                     <button onclick="my_modal_4.showModal()" class="btn btn-xs sm:btn-md btn-outline">Read</button>
-                    <button onclick="window.location.href = '{% url 'book_detail' book.id %}'" class="btn btn-xs sm:btn-md btn-primary">Details</button>
+                    <button onclick="window.location.href = '{% url 'book_detail' book.title book.id %}'" class="btn btn-xs sm:btn-md btn-primary">Details</button>
                   </div>
                 </div>
               </div>
