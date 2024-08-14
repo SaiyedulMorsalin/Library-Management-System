@@ -1,13 +1,8 @@
 from django.db import models
 from authors.models import Author
-
+from categories.models import Category
 
 # Create your models here.
-class Category(models.Model):
-    name = models.CharField(max_length=150)
-
-    def __str__(self):
-        return self.name
 
 
 class Book(models.Model):
@@ -21,3 +16,7 @@ class Book(models.Model):
     borrow_price = models.PositiveIntegerField()
     stk_quantity = models.PositiveIntegerField()
     is_available = models.BooleanField(default=False)
+    discount_price = models.IntegerField(default=50)
+
+    def now_price(self):
+        return self.borrow_price - self.discount_price

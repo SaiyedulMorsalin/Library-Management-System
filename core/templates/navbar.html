@@ -9,6 +9,9 @@
             <a href="" class="text-lg">Deposit</a>
             <a href="" class="text-lg">Borrow List</a>
           {% endif %}
+          {% if request.user.is_superuser %}
+            <a href="{% url 'add_book' %}" class="text-lg">Add Book</a>
+          {% endif %}
         </div>
       </div>
       {% if request.user.is_authenticated %}
