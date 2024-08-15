@@ -16,6 +16,11 @@
       </div>
       {% if request.user.is_authenticated %}
         <div class="flex-none">
+          <div class="flex items-center">
+            <span class="hidden sm:block">Balance:</span>
+            <span class="mx-2">{{ request.user.account.balance }}</span>
+          </div>
+
           <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
               <div class="indicator">

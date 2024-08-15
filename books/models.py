@@ -19,7 +19,8 @@ class Book(models.Model):
     is_available = models.BooleanField(default=False)
     discount_price = models.IntegerField(default=50)
 
-    def now_price(self):
+    @property
+    def price(self):
         return self.borrow_price - self.discount_price
 
 

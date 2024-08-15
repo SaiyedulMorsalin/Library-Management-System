@@ -3,6 +3,14 @@
 {% block main_content %}
   <div class="sm:container sm:mx-auto">
     <h2 class="text-3xl text-red-600 font-bold text-center">This is User Profile</h2>
+    <h2 class="text-xl">User Account: {{ user_account }}</h2>
+    {% if user_account %}
+      {% for account in user_account %}
+        <p>{{ account.balance }}</p>
+      {% endfor %}
+    {% else %}
+      <p>User Account Not Found!!</p>
+    {% endif %}
 
     <div class="overflow-x-auto">
       <table class="table table-xs">
@@ -27,7 +35,7 @@
               <td>{{ borrow.book.discount_price }}</td>
               <td>{{ borrow.user.account.balance }}</td>
               <td>
-                <a class="btn btn-xs sm:btn-sm btn-outline btn-primary" href="">Return Borrow</a>
+                <a class="btn btn-xs btn-outline btn-primary" href="">Return Book</a>
               </td>
             </tr>
           {% endfor %}
@@ -35,5 +43,4 @@
       </table>
     </div>
   </div>
-  {{ user_account }}
 {% endblock %}
