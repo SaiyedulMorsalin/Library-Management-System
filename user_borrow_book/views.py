@@ -9,16 +9,14 @@ try:
 
     def borrow_now(request, book_id):
         book = get_object_or_404(Book, id=book_id)
-        user_account = getattr(
-            request.user, "account", None
-        )  # Adjust based on actual relationship
+        user_account = getattr(request.user, "account", None)
 
         if user_account is None:
             return redirect("user_login")
 
         if book.stk_quantity > 0:
             user_balance = user_account.balance
-            if user_balance >= book.price:  # Use >= to handle exact matches
+            if user_balance >= book.price:
                 borrow = BorrowBook.objects.create(
                     user=request.user,
                     book=book,
