@@ -8,6 +8,9 @@ class UserAccount(models.Model):
     account_create_date = models.DateField(auto_now_add=True)
     balance = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
+    def __str__(self):
+        return self.user.username
+
 
 class Transaction(models.Model):
     account = models.ForeignKey(

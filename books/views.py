@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, CreateView, DetailView
-from .models import Book
-from .forms import AddBookForm
+from .models import Book, AddReview
+from .forms import AddBookForm, AddReviewForm
+from user_borrow_book.models import BorrowBook
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic.edit import FormView
-
-# Create your views here.
+from django.http import HttpResponse
 
 
 class BookDetail(DetailView):
@@ -14,6 +14,38 @@ class BookDetail(DetailView):
     template_name = "book_detail.html"
     pk_url_kwarg = "id"
     context_object_name = "book"
+    form_class = AddReviewForm
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        self.object = self.get_object()
+        book_id = self.object.id
+        book_title = self.object.title
+
+        borrow_books = BorrowBook.objects.filter(user=user, book_id=book_id)
+        if borrow_books:
+            form = self.form_class()
+            context = self.get_context_data(object=self.object, form=form)
+            return self.render_to_response(context)
+        else:
+
+            context = self.get_context_data(object=self.object)
+            return self.render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+        book_id = self.object.id
+        book_title = self.object.title
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.book = self.object
+            review.save()
+            review_all = AddReview.objects.all()
+        context = self.get_context_data(object=self.object, form=form)
+        return self.render_to_response(context)
 
 
 class ShowAllBook(ListView):
@@ -30,5 +62,5 @@ class AddBook(CreateView):
     success_url = reverse_lazy("home_page")
 
     def form_valid(self, form):
-        self.object = form.save()
+        form.save()
         return super().form_valid(form)

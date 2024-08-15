@@ -11,36 +11,41 @@
     {% else %}
       <p>User Account Not Found!!</p>
     {% endif %}
-
-    <div class="overflow-x-auto">
-      <table class="table table-xs">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>company</th>
-            <th>location</th>
-            <th>Last Login</th>
-            <th>Favorite Color</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for borrow in all_borrow %}
-            <tr>
-              <th>{{ borrow.id }}</th>
-              <td>{{ borrow.book.title }}</td>
-              <td>{{ borrow.book.author }}</td>
-              <td>{{ borrow.borrow_at }}</td>
-              <td>{{ borrow.book.discount_price }}</td>
-              <td>{{ borrow.user.account.balance }}</td>
-              <td>
-                <a class="btn btn-xs btn-outline btn-primary" href="">Return Book</a>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
   </div>
+  {% if all_borrow %}
+    <div class="sm:container sm:mx-auto">
+      <div class="overflow-x-auto border-2">
+        <table class="table table-xs">
+          <thead class="text-lg font-semibold">
+            <tr>
+              <th>SL.</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Borrow Time</th>
+              <th>Borrow Price</th>
+              <th>Current Balance</th>
+              <th>Return Pay</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for borrow in all_borrow %}
+              <tr>
+                <th>{{ borrow.id }}</th>
+                <td>
+                  <a href="{% url 'book_detail' borrow.book.title borrow.book.id %}">{{ borrow.book.title }}</a>
+                </td>
+                <td>{{ borrow.book.author }}</td>
+                <td>{{ borrow.borrow_at }}</td>
+                <td>{{ borrow.book.price }}</td>
+                <td>{{ borrow.user.account.balance }}</td>
+                <td>
+                  <a class="btn btn-xs btn-outline btn-primary" href="{% url 'return_pay' borrow.id %}">Return Book</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

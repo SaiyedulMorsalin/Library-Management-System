@@ -13,16 +13,12 @@ def HomePage(request, category_slug=None):
         books = Book.objects.filter(categories=category)
     categories = Category.objects.all()
     # Compute prices for each book
-    book_price_list = []
-    for book in books:
-        book_price = book.borrow_price - book.discount_price
-        book_price_list.append(book_price)
+
     return render(
         request,
         "index.html",
         {
             "books": books,
             "categories": categories,
-            "book_price_list": book_price_list,
         },
     )

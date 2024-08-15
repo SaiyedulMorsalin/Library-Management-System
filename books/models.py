@@ -24,9 +24,12 @@ class Book(models.Model):
         return self.borrow_price - self.discount_price
 
 
-class AddComment(models.Model):
+class AddReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     name = models.CharField(max_length=100)
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username

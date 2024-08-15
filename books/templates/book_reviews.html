@@ -2,7 +2,11 @@
   <div class="my-3 flex justify-between">
     <h2 class="text-3xl font-bold">Reviews(0)</h2>
     {% if request.user.is_authenticated %}
-      <button class="btn btn-xs sm:btn-md btn-outline" onclick="my_modal_2.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Write a Review</button>
+      {% if request.user.borrow_user.all|length == 0 %}
+        <button disabled title="Please Borrow This Book...." class="btn btn-xs sm:btn-md btn-outline" onclick="my_modal_2.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Borrow This Book..</button>
+      {% else %}
+        <button class="btn btn-xs sm:btn-md btn-outline" onclick="my_modal_2.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Write a Review</button>
+      {% endif %}
     {% else %}
       <button class="btn btn-xs sm:btn-md btn-outline" onclick="my_modal_3.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Write a Review</button>
     {% endif %}
@@ -69,8 +73,15 @@
 <dialog id="my_modal_2" class="modal">
   <div class="modal-box">
     <h3 class="text-lg font-bold">Write Your Review</h3>
-    <form action="" class="my-3">
-      <textarea placeholder="Bio" class="textarea textarea-bordered textarea-lg w-full"></textarea>
+    <form action="" class="my-3" method="POST">
+      {% csrf_token %}
+      {% if form %}
+        {{ form }}
+      {% else %}
+        <p>Please Borrow This Book Then Review..</p>
+      {% endif %}
+
+      {% comment %} <textarea name="comment" placeholder="Write Your Review" class="textarea textarea-bordered textarea-lg w-full"></textarea> {% endcomment %}
       <div class="flex justify-end">
         <button class="btn btn-xs sm:btn-md btn-primary" type="submit">Submit</button>
       </div>

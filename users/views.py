@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
@@ -7,6 +7,8 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserLoginForm
 from accounts.models import UserAccount
 from user_borrow_book.models import BorrowBook
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
 
 
 # Create your views here.
@@ -73,6 +75,22 @@ def user_profile(request, name):
         "user_profile.html",
         {"all_borrow": borrow_books, "user_account": user_accounts},
     )
+
+
+class ReturnPay(LoginRequiredMixin, View):
+
+    def get(self, request, id):
+        user_borrow = get_object_or_404(BorrowBook, id=id)
+        if user_borrow:
+            user_account = user_borrow.user.account
+            user_borrow_book = user_borrow.book
+            user_account.balance += user_borrow_book.price
+            user_account.save(update_fields=["balance"])
+            user_borrow.delete()
+            print(user_borrow.total_price)
+            messages.success(request, "You have been successfully return ")
+
+        return redirect("user_profile", self.request.user.username)
 
 
 class EditUserProfile(UpdateView):

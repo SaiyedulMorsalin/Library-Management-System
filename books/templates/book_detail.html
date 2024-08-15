@@ -51,7 +51,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-12 sm:gap-5">
                   <div class="col-span-7">
                     <div class="text">
-                      <h4><i class="fa-solid fa-circle-check fa-lg mr-2" style="color: #63E6BE;"></i>In Stock <span class="text-red-600">(only 1 copy left)</span></h4>
+                      <h4><i class="fa-solid fa-circle-check fa-lg mr-2" style="color: #63E6BE;"></i>In Stock <span class="text-red-600">(only {{ book.stk_quantity }} copy left)</span></h4>
                       <div class="flex gap-5 mt-3">
                         <ul class="text-center text-base font-semibold">
                           <li>Book Length</li>
@@ -84,7 +84,7 @@
                       <p title="Now Borrow Price Tk. 450" class="hover:text-green-300">
                         <span class="line-through italic text-base mx-4">TK. {{ book.borrow_price }}</span>
                       </p>
-                      <p class="text-red-600 text-base">You Save TK. 84 (14%)</p>
+                      <p class="text-red-600 text-base">You Save TK. {{ book.discount_price }} (14%)</p>
                     </div>
                     <p class="ml-1 hover:italic text-xl font-semibold">
                       Tk. {{ book.price }} <span class="text-base">(For 7 days)</span>
@@ -120,6 +120,7 @@
         </div>
       </div>
       <!-- Related Books -->
+
       <div class="col-span-1 sm:col-span-4 hidden sm:block bg-base-200 p-3">
         <div class="some-text my-3">
           <h2 class="text-2xl text-center">Related Books</h2>
