@@ -1,6 +1,6 @@
 <div class="my-3 w-4/5 mx-auto">
   <div class="my-3 flex justify-between">
-    <h2 class="text-3xl font-bold">Reviews(0)</h2>
+    <h2 class="text-3xl font-bold">Reviews({{ review_all|length }})</h2>
     {% if request.user.is_authenticated %}
       {% if request.user.borrow_user.all|length == 0 %}
         <button disabled title="Please Borrow This Book...." class="btn btn-xs sm:btn-md btn-outline" onclick="my_modal_2.showModal()"><i class="fa-solid fa-pen-to-square fa-lg"></i> Borrow This Book..</button>
@@ -12,82 +12,61 @@
     {% endif %}
   </div>
 
-  <div class="my-3 p-3 border-2 rounded-lg">
-    <div class="flex">
-      <div class="avatar">
-        <div class="w-16 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+  {% for review in review_all %}
+    <div class="my-3 p-3 border-2 rounded-lg">
+      <div class="flex">
+        <div class="avatar">
+          <div class="w-16 rounded-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          </div>
+        </div>
+        <div class="mt-1 mx-2">
+          <h3><span>by</span><span>Unknown</span><span>Date</span><span><i class="fa-regular fa-circle-check fa-lg ml-3" style="color: #63E6BE;"></i></span></h3>
+          <div class="rating">
+            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
+            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
+            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
+            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
+            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" checked="checked" />
+          </div>
         </div>
       </div>
-      <div class="mt-1 mx-2">
-        <h3><span>by</span><span>Unknown</span><span>Date</span><span><i class="fa-regular fa-circle-check fa-lg ml-3" style="color: #63E6BE;"></i></span></h3>
-        <div class="rating">
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" checked="checked" />
-        </div>
+      <div class="mx-2">
+        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ea quis nesciunt voluptates ipsam eaque reprehenderit molestias soluta, tenetur non? Odit, eligendi. Sunt perspiciatis neque voluptatum odio nisi. Officiis, inventore? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea eum sed maxime deserunt odit! Ipsam, architecto. Nemo, corporis quas fuga cum nisi nihil fugit impedit sed aliquid numquam vero quod!</h1>
       </div>
     </div>
-    <div class="mx-2">
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ea quis nesciunt voluptates ipsam eaque reprehenderit molestias soluta, tenetur non? Odit, eligendi. Sunt perspiciatis neque voluptatum odio nisi. Officiis, inventore? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea eum sed maxime deserunt odit! Ipsam, architecto. Nemo, corporis quas fuga cum nisi nihil fugit impedit sed aliquid numquam vero quod!</h1>
+  {% endfor %}
+  <!-- You can open the modal using ID.showModal() method -->
+
+  <dialog id="my_modal_3" class="modal">
+    <div class="modal-box">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+      <h3 class="text-lg font-bold">Login and Borrow Alert!</h3>
+      <p class="py-4">Please login and Borrow this Book to write review !!</p>
     </div>
-  </div>
-  <div class="my-3 p-3 border-2 rounded-lg">
-    <div class="flex">
-      <div class="avatar">
-        <div class="w-16 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+  </dialog>
+
+  <dialog id="my_modal_2" class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Write Your Review</h3>
+      <form action="" class="my-3" method="POST">
+        {% csrf_token %}
+        {% if form %}
+          {{ form }}
+        {% else %}
+          <p>Please Borrow This Book Then Review..</p>
+        {% endif %}
+
+        {% comment %} <textarea name="comment" placeholder="Write Your Review" class="textarea textarea-bordered textarea-lg w-full"></textarea> {% endcomment %}
+        <div class="flex justify-end">
+          <button class="btn btn-xs sm:btn-md btn-primary" type="submit">Submit</button>
         </div>
-      </div>
-      <div class="mt-1 mx-2">
-        <h3><span>by</span><span>Unknown</span><span>Date</span><span><i class="fa-regular fa-circle-check fa-lg ml-3" style="color: #63E6BE;"></i></span></h3>
-        <div class="rating">
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-          <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" checked="checked" />
-        </div>
-      </div>
+      </form>
     </div>
-    <div class="mx-2">
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ea quis nesciunt voluptates ipsam eaque reprehenderit molestias soluta, tenetur non? Odit, eligendi. Sunt perspiciatis neque voluptatum odio nisi. Officiis, inventore? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea eum sed maxime deserunt odit! Ipsam, architecto. Nemo, corporis quas fuga cum nisi nihil fugit impedit sed aliquid numquam vero quod!</h1>
-    </div>
-  </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 </div>
-
-<!-- You can open the modal using ID.showModal() method -->
-
-<dialog id="my_modal_3" class="modal">
-  <div class="modal-box">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h3 class="text-lg font-bold">Login and Borrow Alert!</h3>
-    <p class="py-4">Please login and Borrow this Book to write review !!</p>
-  </div>
-</dialog>
-
-<dialog id="my_modal_2" class="modal">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">Write Your Review</h3>
-    <form action="" class="my-3" method="POST">
-      {% csrf_token %}
-      {% if form %}
-        {{ form }}
-      {% else %}
-        <p>Please Borrow This Book Then Review..</p>
-      {% endif %}
-
-      {% comment %} <textarea name="comment" placeholder="Write Your Review" class="textarea textarea-bordered textarea-lg w-full"></textarea> {% endcomment %}
-      <div class="flex justify-end">
-        <button class="btn btn-xs sm:btn-md btn-primary" type="submit">Submit</button>
-      </div>
-    </form>
-  </div>
-  <form method="dialog" class="modal-backdrop">
-    <button>close</button>
-  </form>
-</dialog>

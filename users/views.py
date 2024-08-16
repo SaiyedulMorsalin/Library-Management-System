@@ -20,9 +20,17 @@ class UserRegisterView(FormView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        user_accounts = UserAccount.objects.create(user=self.request)
+        # Create UserAccount with the newly created user
+        UserAccount.objects.create(user=user)
         messages.success(self.request, "You Are Successfully Registered!!")
         return super().form_valid(form)
+
+    # def form_valid(self, form):
+    #     user = form.save()
+    #     login(self.request, user)
+    #     user_accounts = UserAccount.objects.create(user=self.request)
+    #     messages.success(self.request, "You Are Successfully Registered!!")
+    #     return super().form_valid(form)
 
 
 class UserLoginView(LoginView):
@@ -87,6 +95,8 @@ class ReturnPay(LoginRequiredMixin, View):
             user_account.balance += user_borrow_book.price
             user_account.save(update_fields=["balance"])
             user_borrow.delete()
+            user_borrow_book.stk_quantity += 1
+            user_borrow_book.save(update_fields=["stk_quantity"])
             print(user_borrow.total_price)
             messages.success(request, "You have been successfully return ")
 

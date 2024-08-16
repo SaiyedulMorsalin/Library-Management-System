@@ -21,19 +21,17 @@ class BookDetail(DetailView):
         self.object = self.get_object()
         book_id = self.object.id
         book_title = self.object.title
+        if self.request.user.is_authenticated:
+            borrow_books = BorrowBook.objects.filter(user=user, book_id=book_id)
+            if borrow_books:
+                form = self.form_class()
+                context = self.get_context_data(object=self.object, form=form)
+                return self.render_to_response(context)
 
-        borrow_books = BorrowBook.objects.filter(user=user, book_id=book_id)
-        if borrow_books:
-            form = self.form_class()
-            context = self.get_context_data(object=self.object, form=form)
-            return self.render_to_response(context)
-        else:
-
-            context = self.get_context_data(object=self.object)
-            return self.render_to_response(context)
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
-
         self.object = self.get_object()
         book_id = self.object.id
         book_title = self.object.title
@@ -43,9 +41,14 @@ class BookDetail(DetailView):
             review.user = request.user
             review.book = self.object
             review.save()
-            review_all = AddReview.objects.all()
         context = self.get_context_data(object=self.object, form=form)
         return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        review_all = AddReview.objects.all()
+        context["review_all"] = review_all
+        return context
 
 
 class ShowAllBook(ListView):

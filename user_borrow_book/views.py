@@ -3,11 +3,12 @@ from books.models import Book
 from .models import BorrowBook
 from accounts.models import UserAccount
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 # Create your views here.
 try:
 
-    def borrow_now(request, book_id):
+    def borrow_now(request, book_title, book_id):
         book = get_object_or_404(Book, id=book_id)
         user_account = getattr(request.user, "account", None)
 
@@ -30,24 +31,24 @@ try:
 
                 messages.success(
                     request,
-                    f'Successfully withdrew {"{:,.2f}".format(float(book.price))}$ from your account',
+                    f'Successfully Purchase {"{:,.2f}".format(float(book.price))}$ from your account',
                 )
-                return redirect("borrow_conf", order_id=borrow.id)
+                return redirect("borrow_conf", book_id=borrow.id)
             else:
                 messages.error(
                     request,
                     "Insufficient balance to borrow this book.",
                 )
-                return redirect("book_detail", book_id=book.id)
+                return redirect("book_detail", book.title, book.id)
         else:
             messages.error(
                 request,
                 "The book is out of stock.",
             )
-            return redirect("book_detail", book_id=book.id)
+            return redirect("book_detail", book.title, book.id)
 
-    def borrow_confirmation(request, order_id):
-        borrow = get_object_or_404(BorrowBook, id=order_id, user=request.user)
+    def borrow_confirmation(request, book_id):
+        borrow = get_object_or_404(BorrowBook, id=book_id, user=request.user)
         return render(request, "borrow_conf.html", {"borrow": borrow})
 
 except Exception as e:

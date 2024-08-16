@@ -2,9 +2,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("book/<int:book_id>/", views.borrow_now, name="borrow_now"),
+    path("book/<str:book_title>/<int:book_id>/", views.borrow_now, name="borrow_now"),
     path(
-        "book/confirmation/<int:order_id>/",
+        "borrow/confirmation/<int:book_id>/",
         views.borrow_confirmation,
         name="borrow_conf",
     ),
