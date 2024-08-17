@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="mt-1 mx-2">
-          <h3><span>by</span><span>Unknown</span><span>Date</span><span><i class="fa-regular fa-circle-check fa-lg ml-3" style="color: #63E6BE;"></i></span></h3>
+          <h3><span>by</span><span class="ml-2 text-lg font-semibold">{{ review.user.username }}</span><span><i class="fa-regular fa-circle-check fa-lg ml-1" style="color: #63E6BE;"></i></span><span class="ml-3">{{ review.created_on }}</span></h3>
           <div class="rating">
             <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
             <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
@@ -31,8 +31,8 @@
           </div>
         </div>
       </div>
-      <div class="mx-2">
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ea quis nesciunt voluptates ipsam eaque reprehenderit molestias soluta, tenetur non? Odit, eligendi. Sunt perspiciatis neque voluptatum odio nisi. Officiis, inventore? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea eum sed maxime deserunt odit! Ipsam, architecto. Nemo, corporis quas fuga cum nisi nihil fugit impedit sed aliquid numquam vero quod!</h1>
+      <div class="mt-5">
+        <p>{{ review.body }}</p>
       </div>
     </div>
   {% endfor %}
@@ -50,16 +50,14 @@
 
   <dialog id="my_modal_2" class="modal">
     <div class="modal-box">
-      <h3 class="text-lg font-bold">Write Your Review</h3>
+      <h3 class="text-lg font-bold">Responses</h3>
       <form action="" class="my-3" method="POST">
         {% csrf_token %}
         {% if form %}
-          {{ form }}
+          {{ form.body }}
         {% else %}
           <p>Please Borrow This Book Then Review..</p>
         {% endif %}
-
-        {% comment %} <textarea name="comment" placeholder="Write Your Review" class="textarea textarea-bordered textarea-lg w-full"></textarea> {% endcomment %}
         <div class="flex justify-end">
           <button class="btn btn-xs sm:btn-md btn-primary" type="submit">Submit</button>
         </div>

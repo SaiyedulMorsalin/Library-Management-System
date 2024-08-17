@@ -24,7 +24,7 @@
           <div class="detail-text">
             <div class="text-title font-semibold">
               <h1 class="text-5xl">{{ book.title }}</h1>
-              <h5 class="text-2xl italic ml-4">by {{ book.author }}</h5>
+              <h5 class="text-2xl italic ml-4">by <a href="">{{ book.author }}</a></h5>
             </div>
             <div class="text-description mt-3 w-11/12 mx-auto">
               <div class="categories-list sm:flex sm:items-center sm:gap-5 hidden sm:block">
@@ -45,7 +45,7 @@
                   <input type="radio" name="rating-4" class="mask mask-star-2 bg-orange-500" />
                   <input type="radio" name="rating-4" class="mask mask-star-2 bg-orange-500" />
                 </div>
-                <h4 class="mx-4 w-auto">{{ request.user.comments.all|length }} Rating | {{ request.user.comments.all|length }} Reviews</h4>
+                <h4 class="mx-4 w-auto">{{ review_all|length }} Rating | {{ review_all|length }} Reviews</h4>
               </div>
               <div class="sm:flex sm:justify-center sm:items-center mt-3">
                 <div class="grid grid-cols-1 sm:grid-cols-12 sm:gap-5">
@@ -112,7 +112,7 @@
 
                 <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Author" />
                 <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-                  <h3><a href="">AuthorName</a></h3>
+                  <h3><a href="">Name: {{ book.author }}</a></h3>
                 </div>
               </div>
             </div>
@@ -126,6 +126,144 @@
           <h2 class="text-2xl text-center">Related Books</h2>
         </div>
         <div class="card-wrap sm:grid sm:grid-cols-4 sm:gap-3 sm:mx-auto">
+          <div class="sm:col-span-2 sm:hover:shadow-lg">
+            <div class="flex mb-1">
+              <div class="flex-none">
+                <figure class="w-20">
+                  <img style="height: 110px;" src="https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/41198395b_81533.jpg" alt="Shoes" />
+                </figure>
+              </div>
+              <div class="flex-1 card-text">
+                <h6 class="text-lg">Harry Potter</h6>
+                <p class="text-sm">
+                  by <a class="font-semibold" href="">author</a>
+                </p>
+                <a href="">
+                  <p class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <p class="text-base">
+                    <span class="text-red-600 line-through italic">TK. 500</span>
+                    <span>TK. 450</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="sm:col-span-2 sm:hover:shadow-lg">
+            <div class="flex mb-1">
+              <div class="flex-none">
+                <figure class="w-20">
+                  <img style="height: 110px;" src="https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/41198395b_81533.jpg" alt="Shoes" />
+                </figure>
+              </div>
+              <div class="flex-1 card-text">
+                <h6 class="text-lg">Harry Potter</h6>
+                <p class="text-sm">
+                  by <a class="font-semibold" href="">author</a>
+                </p>
+                <a href="">
+                  <p class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <p class="text-base">
+                    <span class="text-red-600 line-through italic">TK. 500</span>
+                    <span>TK. 450</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="sm:col-span-2 sm:hover:shadow-lg">
+            <div class="flex mb-1">
+              <div class="flex-none">
+                <figure class="w-20">
+                  <img style="height: 110px;" src="https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/41198395b_81533.jpg" alt="Shoes" />
+                </figure>
+              </div>
+              <div class="flex-1 card-text">
+                <h6 class="text-lg">Harry Potter</h6>
+                <p class="text-sm">
+                  by <a class="font-semibold" href="">author</a>
+                </p>
+                <a href="">
+                  <p class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <p class="text-base">
+                    <span class="text-red-600 line-through italic">TK. 500</span>
+                    <span>TK. 450</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="sm:col-span-2 sm:hover:shadow-lg">
+            <div class="flex mb-1">
+              <div class="flex-none">
+                <figure class="w-20">
+                  <img style="height: 110px;" src="https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/41198395b_81533.jpg" alt="Shoes" />
+                </figure>
+              </div>
+              <div class="flex-1 card-text">
+                <h6 class="text-lg">Harry Potter</h6>
+                <p class="text-sm">
+                  by <a class="font-semibold" href="">author</a>
+                </p>
+                <a href="">
+                  <p class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <p class="text-base">
+                    <span class="text-red-600 line-through italic">TK. 500</span>
+                    <span>TK. 450</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="sm:col-span-2 sm:hover:shadow-lg">
+            <div class="flex mb-1">
+              <div class="flex-none">
+                <figure class="w-20">
+                  <img style="height: 110px;" src="https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/41198395b_81533.jpg" alt="Shoes" />
+                </figure>
+              </div>
+              <div class="flex-1 card-text">
+                <h6 class="text-lg">Harry Potter</h6>
+                <p class="text-sm">
+                  by <a class="font-semibold" href="">author</a>
+                </p>
+                <a href="">
+                  <p class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <p class="text-base">
+                    <span class="text-red-600 line-through italic">TK. 500</span>
+                    <span>TK. 450</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="sm:col-span-2 sm:hover:shadow-lg">
+            <div class="flex mb-1">
+              <div class="flex-none">
+                <figure class="w-20">
+                  <img style="height: 110px;" src="https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/41198395b_81533.jpg" alt="Shoes" />
+                </figure>
+              </div>
+              <div class="flex-1 card-text">
+                <h6 class="text-lg">Harry Potter</h6>
+                <p class="text-sm">
+                  by <a class="font-semibold" href="">author</a>
+                </p>
+                <a href="">
+                  <p class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <p class="text-base">
+                    <span class="text-red-600 line-through italic">TK. 500</span>
+                    <span>TK. 450</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+            <hr />
+          </div>
           <div class="sm:col-span-2 sm:hover:shadow-lg">
             <div class="flex mb-1">
               <div class="flex-none">

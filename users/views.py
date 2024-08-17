@@ -2,13 +2,20 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic import TemplateView, UpdateView, FormView, ListView
+from django.views.generic import (
+    TemplateView,
+    UpdateView,
+    FormView,
+    ListView,
+)
 from django.contrib import messages
 from .forms import UserRegisterForm, UserLoginForm
 from accounts.models import UserAccount
 from user_borrow_book.models import BorrowBook
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
+from django.contrib.auth.decorators import login_required
+from accounts.views import email_send_user
 
 
 # Create your views here.
@@ -20,17 +27,9 @@ class UserRegisterView(FormView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        # Create UserAccount with the newly created user
         UserAccount.objects.create(user=user)
         messages.success(self.request, "You Are Successfully Registered!!")
         return super().form_valid(form)
-
-    # def form_valid(self, form):
-    #     user = form.save()
-    #     login(self.request, user)
-    #     user_accounts = UserAccount.objects.create(user=self.request)
-    #     messages.success(self.request, "You Are Successfully Registered!!")
-    #     return super().form_valid(form)
 
 
 class UserLoginView(LoginView):
@@ -61,16 +60,7 @@ class UserLogoutView(LogoutView):
         return reverse_lazy("home_page")
 
 
-# class UserProfileView(ListView):
-#     model = BorrowBook
-#     template_name = "user_profile.html"
-#     context_object_name = "all_borrow"
-
-#     # def get_context_data(self, **kwargs):
-#     #     context = super().get_context_data(**kwargs)
-#     #     context["user_account"] = "Some value"
-
-
+@login_required(login_url="user_login")
 def user_profile(request, name):
 
     user = request.user
@@ -98,11 +88,16 @@ class ReturnPay(LoginRequiredMixin, View):
             user_borrow_book.stk_quantity += 1
             user_borrow_book.save(update_fields=["stk_quantity"])
             print(user_borrow.total_price)
+            email_send_user(
+                self.request.user,
+                user_account.balance,
+                "send_email.html",
+                "Return",
+            )
             messages.success(request, "You have been successfully return ")
 
         return redirect("user_profile", self.request.user.username)
 
 
-class EditUserProfile(UpdateView):
-
-    pass
+class EditUserProfile(LoginRequiredMixin, TemplateView):
+    template_name = "edit_user_profile.html"

@@ -29,7 +29,7 @@ class Book(models.Model):
 
 class AddReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
-    book = models.ForeignKey(Book, related_name="books", on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, related_name="reviews", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     email = models.EmailField()
     body = models.TextField()

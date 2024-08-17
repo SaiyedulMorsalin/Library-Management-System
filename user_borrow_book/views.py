@@ -4,10 +4,13 @@ from .models import BorrowBook
 from accounts.models import UserAccount
 from django.contrib import messages
 from django.urls import reverse_lazy
+from accounts.views import email_send_user
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 try:
 
+    @login_required(login_url="user_login")
     def borrow_now(request, book_title, book_id):
         book = get_object_or_404(Book, id=book_id)
         user_account = getattr(request.user, "account", None)
@@ -32,6 +35,12 @@ try:
                 messages.success(
                     request,
                     f'Successfully Purchase {"{:,.2f}".format(float(book.price))}$ from your account',
+                )
+                email_send_user(
+                    user=request.user,
+                    amount=book.price,
+                    template="send_email.html",
+                    title="Borrow book",
                 )
                 return redirect("borrow_conf", book_id=borrow.id)
             else:

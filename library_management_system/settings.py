@@ -18,6 +18,17 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# EmailSetup
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "mdsaiyedulmorsalin.code@gmail.com"
+EMAIL_HOST_PASSWORD = "rbccbphqmiucdwux"
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -28,6 +39,7 @@ SECRET_KEY = "django-insecure-!ahgtm#y5qulkxe*ubf7n12n!$e457fh=13_0)j=iz(55vx=j#
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -85,13 +97,22 @@ WSGI_APPLICATION = "library_management_system.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "lib_system",
+        "USER": "postgres",
+        "PASSWORD": "511061",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

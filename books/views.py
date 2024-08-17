@@ -46,7 +46,10 @@ class BookDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        review_all = AddReview.objects.all()
+        book = self.get_object()
+        book_title = book.title
+        book = Book.objects.get(title=book_title)
+        review_all = book.reviews.all()
         context["review_all"] = review_all
         return context
 
@@ -66,4 +69,5 @@ class AddBook(CreateView):
 
     def form_valid(self, form):
         form.save()
+        messages.success(request, "Successfully added this book.....")
         return super().form_valid(form)
