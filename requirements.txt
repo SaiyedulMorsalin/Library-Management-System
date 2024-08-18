@@ -1,7 +1,7 @@
 asgiref
 dj-database-url
 Django
-environ
+django-environ
 pillow
 psycopg2
 sqlparse
