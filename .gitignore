@@ -1,19 +1,6 @@
 lmsenv
 ./library_management_system/.env
-.db
-*.sqlite3
-*.sqlite
-*.log
-local_settings.py
+
 db.sqlite3
-.vscode/
-.env
-.env.local
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.pyo
 
 .env
-/library_management_system/.env
