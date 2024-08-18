@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security Settings
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HO adSTS = ["*"]
 
 
 
