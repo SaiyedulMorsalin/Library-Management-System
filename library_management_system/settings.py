@@ -7,7 +7,8 @@ env = environ.Env()
 environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# Port Setting
+PORT = os.environ.env("PORT", "8000")
 # Security Settings
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
