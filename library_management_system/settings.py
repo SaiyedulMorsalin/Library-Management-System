@@ -17,7 +17,7 @@ HOST = env("HOST", default="0.0.0.0")
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ["https://our-library-management-system.onrender.com/"]
+
 
 
 # Application Definition
@@ -46,7 +46,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
+CSRF_TRUSTED_ORIGINS = ["https://our-library-management-system.onrender.com/"]
 ROOT_URLCONF = "library_management_system.urls"
 
 TEMPLATES = [
