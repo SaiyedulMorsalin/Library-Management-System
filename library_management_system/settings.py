@@ -11,8 +11,8 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Port Setting (Corrected)
-PORT = env("PORT", default="8000")
-
+PORT = env("PORT", default="0.0.0.0:8000")
+HOST = env("HOST", default="0.0.0.0")
 # Security Settings
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
