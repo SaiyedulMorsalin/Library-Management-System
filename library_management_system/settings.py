@@ -49,7 +49,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "library_management_system.urls"
 CORS_ALLOWED_ORIGINS = [
-    "https://our-library-management-system.onrender.com",
+    'https://our-library-management-system.onrender.com'
 ]
 TEMPLATES = [
     {
