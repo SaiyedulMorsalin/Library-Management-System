@@ -16,7 +16,7 @@ HOST = env("HOST", default="0.0.0.0")
 # Security Settings
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = ['our-library-management-system.onrender.com']
+ALLOWED_HOSTS = ['our-library-management-system.onrender.com',"*"]
 
 
 
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "authors",
     "categories",
     "user_borrow_book",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -45,10 +46,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
-CSRF_TRUSTED_ORIGINS = ["https://our-library-management-system.onrender.com/"]
-ROOT_URLCONF = "library_management_system.urls"
 
+ROOT_URLCONF = "library_management_system.urls"
+CORS_ALLOWED_ORIGINS = [
+    "https://our-library-management-system.onrender.com",
+]
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
