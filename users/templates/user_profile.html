@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  {{ request.user.username }}
+{% endblock %}
+
 {% block main_content %}
   <div class="sm:container sm:mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-12 gap-5">
       <div class="col-span-8">
         <div class="flex justify-between items-center sm:p-10">
           <div class="mx-4 flex-1">
-            <h1 class="text-5xl">@<span class="font-semibold capitalize">{{ request.user.username }}</span></h1>
+            <h1 class="text-5xl">@<span class="font-semibold capitalize">{{ request.user.first_name }}</span></h1>
           </div>
           <div class="tooltip" data-tip="Copy link to profile">
             <button class="btn btn-xs btn-ghost" onclick="copyTextToClipboard('{% url 'user_profile' request.user.username %}')">
@@ -26,7 +30,7 @@
 
           <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Account" />
           <div role="tabpanel" class="tab-content p-10">
-            Hello! @{{ request.user.username }}
+            Hello! @{{ request.user.first_name }}
             <h1 class="mx-2 text-red-500">This section is underconstruction...</h1>
           </div>
 
@@ -44,7 +48,7 @@
       <div class="col-span-4">
         <div class="pl-5 py-10 hidden sm:block">
           <img class="w-24 h-24" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="profile_img" />
-          <h1 class="text-2xl">@<span class="font-semibold capitalize">{{ request.user.username }}</span></h1>
+          <h1 class="text-2xl">@<span class="font-semibold capitalize">{{ request.user.first_name }}</span></h1>
           <a class="text-green-500 font-semibold" href="{% url 'edit_user_profile' request.user.username %}">Edit Profile</a>
         </div>
       </div>
