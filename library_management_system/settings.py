@@ -3,12 +3,16 @@ import os
 import environ
 import dj_database_url
 
+# Initialize environment variables
 env = environ.Env()
 environ.Env.read_env()
 
+# Base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
-# Port Setting
-PORT = os.environ.env("PORT", "8000")
+
+# Port Setting (Corrected)
+PORT = env("PORT", default="8000")
+
 # Security Settings
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
