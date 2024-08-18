@@ -51,6 +51,7 @@ ROOT_URLCONF = "library_management_system.urls"
 CORS_ALLOWED_ORIGINS = [
     'https://our-library-management-system.onrender.com'
 ]
+CSRF_TRUSTED_ORIGINS = [  'https://our-library-management-system.onrender.com']
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
