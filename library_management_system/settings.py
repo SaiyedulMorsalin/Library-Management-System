@@ -17,8 +17,8 @@ HOST = env("HOST", default="0.0.0.0")
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
 
-CSRF_TRUSTED_ORIGINS = ['*']
-CSRF_TRUSTED_ORIGINS = env.list("https://our-library-management-system.onrender.com/", default=["*"])
+CSRF_TRUSTED_ORIGINS = ["https://our-library-management-system.onrender.com/"]
+
 
 # Application Definition
 INSTALLED_APPS = [
