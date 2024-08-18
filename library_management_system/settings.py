@@ -16,7 +16,7 @@ HOST = env("HOST", default="0.0.0.0")
 # Security Settings
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=True)
-
+ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ["https://our-library-management-system.onrender.com/"]
 
 
