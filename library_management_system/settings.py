@@ -10,13 +10,11 @@ environ.Env.read_env()
 # Base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Port Setting (Corrected)
-PORT = env("PORT", default="0.0.0.0:8000")
-HOST = env("HOST", default="0.0.0.0")
+
 # Security Settings
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = ['our-library-management-system.onrender.com',"*"]
+ALLOWED_HOSTS = ["*"]
 
 
 
