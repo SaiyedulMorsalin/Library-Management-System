@@ -3,6 +3,9 @@ from .models import UserAccount
 
 
 # Register your models here.
-@admin.register(UserAccount)
+
 class UserAccountAdmin(admin.ModelAdmin):
-    list_display = ("user__username", "account_create_date", "balance")
+    list_display = ("get_username", "account_create_date", "balance")
+    def get_username(self, obj):
+        return obj.user.username
+admin.site.register(UserAccount, UserAccountAdmin)
