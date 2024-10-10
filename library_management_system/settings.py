@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Security Settings
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = "django-insecure-!ahgtm#y5qulkxe*ubf7n12n!$e457fh=13_0)j=iz(55vx=j#"
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
@@ -51,7 +51,7 @@ ROOT_URLCONF = "library_management_system.urls"
 CORS_ALLOWED_ORIGINS = [
     'https://our-library-management-system.onrender.com'
 ]
-CSRF_TRUSTED_ORIGINS = [  'https://our-library-management-system.onrender.com']
+CSRF_TRUSTED_ORIGINS = [ 'https://our-library-management-system.onrender.com']
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -71,20 +71,26 @@ TEMPLATES = [
 WSGI_APPLICATION = "library_management_system.wsgi.application"
 
 # Email Configuration
+
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = env("EMAIL")
-EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
-
+EMAIL_HOST_USER = "saiyedulmorsalin.projects@gmail.com"
+EMAIL_HOST_PASSWORD = "ytuhwplsvaprpnkg"
 # Database Configuration
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default=env("DATABASE_URL"),
+#     )
+# }
 DATABASES = {
-    "default": dj_database_url.config(
-        default=env("DATABASE_URL"),
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
+    }
 }
-
 # Password Validation
 AUTH_PASSWORD_VALIDATORS = [
     {
